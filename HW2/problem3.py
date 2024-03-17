@@ -66,7 +66,7 @@ if __name__ == "__main__":
     alphas = np.linspace(0.1, 1, 10)
 
   
-    #run_all_alternatives(num_alternatives_values, num_trials, num_time_steps, alpha, sigma, threshold, non_decision_time)
+    run_all_alternatives(num_alternatives_values, num_trials, num_time_steps, alpha, sigma, threshold, non_decision_time)
 
     num_alternatives = 3
     run_all_alpha_values(num_alternatives, num_trials, num_time_steps, alphas, sigma, threshold, non_decision_time)
