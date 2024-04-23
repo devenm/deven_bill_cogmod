@@ -43,21 +43,21 @@ print('Setting up base model...')
 
 #Compile and fit models
 def eval_sgd():
-    model = keras.Sequential([
-    layers.Rescaling(1./255),
-    layers.Conv2D(16, 3, padding='same', activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Conv2D(32,3, padding='same',activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Conv2D(64, 3, padding='same', activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Flatten(),
-    layers.Dropout(0.2),
-    layers.Dense(128),
-    layers.Dense(len(data_cat))])
 
     lrs = [0.0001, 0.001, 0.01]
     for lr in lrs:
+        model = keras.Sequential([
+            layers.Rescaling(1./255),
+            layers.Conv2D(16, 3, padding='same', activation='relu'),
+            layers.MaxPooling2D(),
+            layers.Conv2D(32,3, padding='same',activation='relu'),
+            layers.MaxPooling2D(),
+            layers.Conv2D(64, 3, padding='same', activation='relu'),
+            layers.MaxPooling2D(),
+            layers.Flatten(),
+            layers.Dropout(0.2),
+            layers.Dense(128),
+            layers.Dense(len(data_cat))])
         opt = keras.optimizers.SGD(learning_rate=lr)
 
         model.compile(optimizer=opt, loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True), metrics=['accuracy'])
@@ -76,6 +76,7 @@ def eval_sgd():
         plt.plot(epochs_range,history.history['loss'],label = 'Training Loss')
         plt.plot(epochs_range, history.history['val_loss'],label = 'Validation Loss')
         plt.title('Loss')
+        plt.show()
 
 def eval_adam():
 
@@ -107,7 +108,8 @@ def eval_adam():
     plt.plot(epochs_range,history.history['loss'],label = 'Training Loss')
     plt.plot(epochs_range, history.history['val_loss'],label = 'Validation Loss')
     plt.title('Loss')
+    plt.show()
 
 
-eval_sgd()
+#eval_sgd()
 eval_adam()
